@@ -1,4 +1,4 @@
-namespace ApiSample01.Domain;
+namespace ApiSample01.Domain.Entities;
 
 public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {

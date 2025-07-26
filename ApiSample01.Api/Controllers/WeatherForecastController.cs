@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ApiSample01.Domain;
+using ApiSample01.Domain.Entities;
 using ApiSample01.Application.Interfaces;
 
 namespace ApiSample01.Api.Controllers;

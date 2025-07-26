@@ -6,7 +6,7 @@ using ApiSample01.Application.Interfaces;
 
 public class WeatherForecastApplicationService : IWeatherForecastApplicationService
 {
-    public IEnumerable<WeatherForecast> ConsultarPrevisao()
+    public IEnumerable<WeatherForecast> GetWeatherForecast()
     {
         // Application Service apenas orquestra, Domain Service contém as regras
         return WeatherForecastDomainService.GenerateForecasts(5);

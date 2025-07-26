@@ -4,5 +4,5 @@ using ApiSample01.Domain.Entities;
 
 public interface IWeatherForecastApplicationService
 {
-    IEnumerable<WeatherForecast> ConsultarPrevisao();
+    IEnumerable<WeatherForecast> GetWeatherForecast();
 }

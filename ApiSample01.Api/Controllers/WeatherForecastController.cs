@@ -20,6 +20,6 @@ public class WeatherForecastController : ControllerBase
     [HttpGet]
     public IEnumerable<WeatherForecast> Get()
     {
-        return _previsaoTempoService.ConsultarPrevisao();
+        return _previsaoTempoService.GetWeatherForecast();
     }
 }

@@ -20,21 +20,24 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
 
     public WeatherForecastApiResponseDto GetWeatherForecastApiResponse(int days, int start, int limit)
     {
+        // Validação de parâmetros
+        ValidateParameters(days, start, limit);
+
         // Busca dados do Domain
         var allForecasts = GetForecastsFromDomain(days);
 
         // Aplica paginação
         var skip = (start - 1) * limit;
         var forecasts = allForecasts.Skip(skip).Take(limit);
-        
+
         // Monta objetos auxiliares
         var page = new Page { Start = start, Limit = forecasts.Count(), Total = allForecasts.Count() };
-        var transaction = new Transaction 
-        { 
+        var transaction = new Transaction
+        {
             LocalTransactionId = Guid.NewGuid().ToString(),
-            LocalTransactionDate = DateTime.UtcNow 
+            LocalTransactionDate = DateTime.UtcNow
         };
-        
+
         // Monta o DTO de resposta (orquestração)
         return new WeatherForecastApiResponseDto
         {
@@ -45,5 +48,15 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
             Page = page,
             Transaction = transaction
         };
+    }
+    
+    private static void ValidateParameters(int days, int start, int limit)
+    {
+        if (days < 0)
+            throw new ArgumentException("Days cannot be negative", nameof(days));
+        if (start < 1)
+            throw new ArgumentException("Start must be greater than 0", nameof(start));
+        if (limit < 1)
+            throw new ArgumentException("Limit must be greater than 0", nameof(limit));
     }
 }

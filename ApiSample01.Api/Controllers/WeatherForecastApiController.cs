@@ -10,16 +10,16 @@ namespace ApiSample01.Api.Controllers;
 public class WeatherForecastApiController : ControllerBase
 {
 
-    private readonly IWeatherForecastApplicationService _previsaoTempoService;
+    private readonly IWeatherForecastApplicationService _weatherForecastApplicationService;
 
-    public WeatherForecastApiController(IWeatherForecastApplicationService previsaoTempoService)
+    public WeatherForecastApiController(IWeatherForecastApplicationService weatherForecastApplicationService)
     {
-        _previsaoTempoService = previsaoTempoService;
+        _weatherForecastApplicationService = weatherForecastApplicationService;
     }
 
     [HttpGet]
     public IEnumerable<WeatherForecast> Get()
     {
-        return _previsaoTempoService.GetWeatherForecast();
+        return _weatherForecastApplicationService.GetWeatherForecast();
     }
 }

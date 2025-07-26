@@ -37,3 +37,20 @@ Presentation = conhece Application e Domain
 Application = conhece apenas Domain
 Domain = independente (não conhece ninguém)
 Infrastructure = conhece apenas Domain
+
+
+Fluxo Correto:
+Controller → Application Service → Domain Service
+    ↓              ↓                    ↓
+Recebe HTTP    Monta DTO           Regras de Negócio
+Retorna DTO    Orquestra           Gera Entidades
+
+Copy
+Responsabilidades:
+Controller: Apenas recebe/retorna HTTP
+
+Application: Orquestra e monta DTOs de resposta
+
+Domain: Regras de negócio puras
+
+A Application é o local ideal para transformar dados do Domain em DTOs para a API.

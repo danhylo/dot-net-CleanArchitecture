@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ApiSample01.Domain.Entities;
+using ApiSample01.Domain.DTOs;
 using ApiSample01.Application.Interfaces;
 
 namespace ApiSample01.Api.Controllers;
@@ -18,8 +18,8 @@ public class WeatherForecastApiController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<WeatherForecast> Get()
+    public WeatherForecastApiResponseDto Get([FromQuery] int days = 2)
     {
-        return _weatherForecastApplicationService.GetWeatherForecast();
+        return _weatherForecastApplicationService.GetWeatherForecastApiResponse(days);
     }
 }

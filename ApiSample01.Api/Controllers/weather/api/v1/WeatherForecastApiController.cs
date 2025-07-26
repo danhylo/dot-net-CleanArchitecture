@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using ApiSample01.Domain.DTOs;
 using ApiSample01.Application.Interfaces;
 
-namespace ApiSample01.Api.Controllers;
+namespace ApiSample01.Api.Controllers.weather.api.v1;
 
 [ApiController]
-[Route("api/previsao")]
+[Route("weather/api/v1")]
  [Produces("application/json")]
 public class WeatherForecastApiController : ControllerBase
 {
@@ -17,7 +17,7 @@ public class WeatherForecastApiController : ControllerBase
         _weatherForecastApplicationService = weatherForecastApplicationService;
     }
 
-    [HttpGet]
+    [HttpGet("forecast")]
     public WeatherForecastApiResponseDto Get([FromQuery] int days = 2)
     {
         return _weatherForecastApplicationService.GetWeatherForecastApiResponse(days);

@@ -13,6 +13,9 @@ builder.Services.AddSwaggerGen(c =>
 // Adiciona suporte a controllers
 builder.Services.AddControllers();
 
+// Registra o serviço de aplicação
+builder.Services.AddScoped<ApiSample01.Application.Interfaces.IPrevisaoTempoService, ApiSample01.Application.Services.PrevisaoTempoService>();
+
 var app = builder.Build();
 
 // Configura o pipeline HTTP
@@ -23,9 +26,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-
-// Removido endpoint e dados duplicados, agora o controller cuida do endpoint
 
 // Mapeia controllers
 app.MapControllers();

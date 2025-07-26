@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ApiSample01.Domain;
+using ApiSample01.Application.Interfaces;
 
 namespace ApiSample01.Api.Controllers;
 
@@ -8,20 +9,17 @@ namespace ApiSample01.Api.Controllers;
  [Produces("application/json")]
 public class WeatherForecastController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
+
+    private readonly IPrevisaoTempoService _previsaoTempoService;
+
+    public WeatherForecastController(IPrevisaoTempoService previsaoTempoService)
     {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        _previsaoTempoService = previsaoTempoService;
+    }
 
     [HttpGet]
     public IEnumerable<WeatherForecast> Get()
     {
-        return Enumerable.Range(1, 5).Select(index =>
-            new WeatherForecast(
-                DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                Random.Shared.Next(-20, 55),
-                Summaries[Random.Shared.Next(Summaries.Length)]
-            )
-        );
+        return _previsaoTempoService.ConsultarPrevisao();
     }
 }

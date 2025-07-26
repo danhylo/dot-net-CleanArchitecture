@@ -8,16 +8,28 @@ using ApiSample01.Application.Interfaces;
 
 public class WeatherForecastApplicationService : IWeatherForecastApplicationService
 {
+    private static IEnumerable<WeatherForecast> GetForecastsFromDomain(int days)
+    {
+        return WeatherForecastDomainService.GenerateForecasts(days);
+    }
+
     public IEnumerable<WeatherForecast> GetWeatherForecast(int days)
     {
-        // Application Service apenas orquestra, Domain Service contém as regras
-        return WeatherForecastDomainService.GenerateForecasts(days);
+        return GetForecastsFromDomain(days);
     }
 
     public WeatherForecastApiResponseDto GetWeatherForecastApiResponse(int days)
     {
         // Busca dados do Domain
-        var forecasts = WeatherForecastDomainService.GenerateForecasts(days);
+        var forecasts = GetForecastsFromDomain(days);
+        
+        // Monta objetos auxiliares
+        var page = new Page { Start = 1, Limit = days, Total = days };
+        var transaction = new Transaction 
+        { 
+            LocalTransactionId = Guid.NewGuid().ToString(),
+            LocalTransactionDate = DateTime.UtcNow 
+        };
         
         // Monta o DTO de resposta (orquestração)
         return new WeatherForecastApiResponseDto
@@ -26,12 +38,8 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
             HttpMessage = "OK",
             Status = true,
             Data = forecasts,
-            Page = new Page { Start = 1, Limit = days, Total = days },
-            Transaction = new Transaction 
-            { 
-                LocalTransactionId = Guid.NewGuid().ToString(),
-                LocalTransactionDate = DateTime.UtcNow 
-            }
+            Page = page,
+            Transaction = transaction
         };
     }
 }

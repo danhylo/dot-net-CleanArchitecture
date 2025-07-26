@@ -1,4 +1,4 @@
-namespace ApiSample01.Domain.Entities;
+namespace ApiSample01.Domain.Entities.WeatherForecast;
 
 public class WeatherForecast
 {

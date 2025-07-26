@@ -1,6 +1,6 @@
 namespace ApiSample01.Domain.DTOs;
 
-using ApiSample01.Domain.Entities;
+using ApiSample01.Domain.Entities.WeatherForecast;
 using ApiSample01.Domain.Entities.Common;
 
 public class WeatherForecastApiResponseDto

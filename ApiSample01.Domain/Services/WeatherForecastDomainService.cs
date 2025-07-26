@@ -1,6 +1,6 @@
 namespace ApiSample01.Domain.Services;
 
-using ApiSample01.Domain.Entities;
+using ApiSample01.Domain.Entities.WeatherForecast;
 
 public static class WeatherForecastDomainService
 {

@@ -1,6 +1,17 @@
 namespace ApiSample01.Domain.Entities;
 
-public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+public class WeatherForecast
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public DateOnly Date { get; }
+    public int TemperatureC { get; }
+    public int TemperatureF { get; }
+    public string? Summary { get; }
+
+    public WeatherForecast(DateOnly date, int temperatureC, int temperatureF, string? summary)
+    {
+        Date = date;
+        TemperatureC = temperatureC;
+        TemperatureF = temperatureF;
+        Summary = summary;
+    }
 }

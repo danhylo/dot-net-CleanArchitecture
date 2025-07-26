@@ -1,6 +1,3 @@
-using ApiSample01.Domain;
-// Usings removidos, pois não são necessários para métodos de extensão do Swagger
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Adiciona serviços para Swagger UI
@@ -30,7 +27,4 @@ app.UseHttpsRedirection();
 // Mapeia controllers
 app.MapControllers();
 
-
 await app.RunAsync();
-
-

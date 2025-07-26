@@ -1,4 +1,4 @@
-namespace ApiSample01.Domain.Entities.Common;
+namespace ApiSample01.Domain.Entities.Common.api.@base;
 
 public class Transaction
 {

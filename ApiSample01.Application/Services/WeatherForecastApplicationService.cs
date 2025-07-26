@@ -1,7 +1,7 @@
 namespace ApiSample01.Application.Services;
 
 using ApiSample01.Domain.Entities.WeatherForecast;
-using ApiSample01.Domain.Entities.Common;
+using ApiSample01.Domain.Entities.Common.api.@base;
 using ApiSample01.Domain.DTOs;
 using ApiSample01.Domain.Services;
 using ApiSample01.Application.Interfaces;
@@ -18,13 +18,17 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
         return GetForecastsFromDomain(days);
     }
 
-    public WeatherForecastApiResponseDto GetWeatherForecastApiResponse(int days)
+    public WeatherForecastApiResponseDto GetWeatherForecastApiResponse(int days, int start, int limit)
     {
         // Busca dados do Domain
-        var forecasts = GetForecastsFromDomain(days);
+        var allForecasts = GetForecastsFromDomain(days);
+
+        // Aplica paginação
+        var skip = (start - 1) * limit;
+        var forecasts = allForecasts.Skip(skip).Take(limit);
         
         // Monta objetos auxiliares
-        var page = new Page { Start = 1, Limit = days, Total = days };
+        var page = new Page { Start = start, Limit = forecasts.Count(), Total = allForecasts.Count() };
         var transaction = new Transaction 
         { 
             LocalTransactionId = Guid.NewGuid().ToString(),

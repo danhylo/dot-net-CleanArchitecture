@@ -23,7 +23,7 @@ public static class WeatherForecastDomainService
 
     public static IEnumerable<WeatherForecast> GenerateForecasts(int days)
     {
-        return Enumerable.Range(1, days)
+        return Enumerable.Range(0, days)
             .Select(index => CreateRandomForecast(
                 DateOnly.FromDateTime(DateTime.Now.AddDays(index))
             ));

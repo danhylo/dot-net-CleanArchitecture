@@ -18,8 +18,8 @@ public class WeatherForecastApiController : ControllerBase
     }
 
     [HttpGet("forecast")]
-    public WeatherForecastApiResponseDto Get([FromQuery] int days = 2)
+    public WeatherForecastApiResponseDto Get([FromQuery] int days = 2, [FromQuery] int start = 1, [FromQuery] int limit = 100)
     {
-        return _weatherForecastApplicationService.GetWeatherForecastApiResponse(days);
+        return _weatherForecastApplicationService.GetWeatherForecastApiResponse(days, start, limit);
     }
 }

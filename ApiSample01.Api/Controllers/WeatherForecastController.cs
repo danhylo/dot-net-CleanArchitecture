@@ -10,9 +10,9 @@ namespace ApiSample01.Api.Controllers;
 public class WeatherForecastController : ControllerBase
 {
 
-    private readonly IPrevisaoTempoService _previsaoTempoService;
+    private readonly IWeatherForecastApplicationService _previsaoTempoService;
 
-    public WeatherForecastController(IPrevisaoTempoService previsaoTempoService)
+    public WeatherForecastController(IWeatherForecastApplicationService previsaoTempoService)
     {
         _previsaoTempoService = previsaoTempoService;
     }

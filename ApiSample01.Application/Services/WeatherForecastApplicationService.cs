@@ -4,7 +4,7 @@ using ApiSample01.Domain.Entities;
 using ApiSample01.Domain.Services;
 using ApiSample01.Application.Interfaces;
 
-public class PrevisaoTempoService : IPrevisaoTempoService
+public class WeatherForecastApplicationService : IWeatherForecastApplicationService
 {
     public IEnumerable<WeatherForecast> ConsultarPrevisao()
     {

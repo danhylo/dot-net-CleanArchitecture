@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddControllers();
 
 // Registra o serviço de aplicação
-builder.Services.AddScoped<ApiSample01.Application.Interfaces.IPrevisaoTempoService, ApiSample01.Application.Services.PrevisaoTempoService>();
+builder.Services.AddScoped<ApiSample01.Application.Interfaces.IWeatherForecastApplicationService, ApiSample01.Application.Services.WeatherForecastApplicationService>();
 
 var app = builder.Build();
 

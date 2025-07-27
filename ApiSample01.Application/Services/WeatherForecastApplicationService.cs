@@ -1,12 +1,13 @@
 namespace ApiSample01.Application.Services;
 
 using ApiSample01.Domain.Entities.WeatherForecast;
-using ApiSample01.Domain.Entities.Common.Api.Base;
+using ApiSample01.Application.Common.Api.Base;
+using ApiSample01.Application.Common.Base;
 using ApiSample01.Domain.Exceptions;
 using ApiSample01.Domain.Constants;
 using ApiSample01.Application.Common.Extensions;
 using ApiSample01.Application.Common.Helpers;
-using ApiSample01.Domain.Entities.Dto;
+using ApiSample01.Application.Dto;
 using ApiSample01.Domain.Services;
 using ApiSample01.Application.Interfaces;
 using ApiSample01.Domain.Repositories;

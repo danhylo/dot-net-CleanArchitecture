@@ -1,8 +1,10 @@
-namespace ApiSample01.Domain.Entities.Common.Api.Base;
+namespace ApiSample01.Application.Common.Api.Base;
+
+using ApiSample01.Application.Common.Base;
 
 using System.Text.Json.Serialization;
 
-public class ApiResponse<T>
+public class ApiErrorResponse
 {
     [JsonPropertyOrder(1)]
     public int HttpCode { get; set; }
@@ -14,8 +16,8 @@ public class ApiResponse<T>
     public bool Status { get; set; }
     
     [JsonPropertyOrder(4)]
-    public T? Data { get; set; }
+    public Error Error { get; set; } = new();
     
-    [JsonPropertyOrder(6)]
+    [JsonPropertyOrder(5)]
     public Transaction Transaction { get; set; } = new();
 }

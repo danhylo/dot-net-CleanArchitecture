@@ -1,6 +1,7 @@
 namespace ApiSample01.Application.Common.Helpers;
 
-using ApiSample01.Domain.Entities.Common.Api.Base;
+using ApiSample01.Application.Common.Api.Base;
+using ApiSample01.Application.Common.Base;
 using ApiSample01.Domain.Exceptions;
 using ApiSample01.Domain.Constants;
 

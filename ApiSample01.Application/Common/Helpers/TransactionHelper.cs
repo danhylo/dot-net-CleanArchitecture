@@ -1,6 +1,6 @@
 namespace ApiSample01.Application.Common.Helpers;
 
-using ApiSample01.Domain.Entities.Common.Api.Base;
+using ApiSample01.Application.Common.Api.Base;
 
 public static class TransactionHelper
 {

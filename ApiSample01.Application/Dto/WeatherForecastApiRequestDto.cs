@@ -1,4 +1,4 @@
-namespace ApiSample01.Domain.Entities.Dto;
+namespace ApiSample01.Application.Dto;
 
 using ApiSample01.Domain.ValueObjects;
 

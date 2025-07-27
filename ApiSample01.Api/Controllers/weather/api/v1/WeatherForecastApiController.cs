@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using ApiSample01.Domain.Entities.Dto;
+using ApiSample01.Application.Dto;
 using ApiSample01.Application.Interfaces;
-using ApiSample01.Domain.Entities.Common.Api.Base;
+using ApiSample01.Application.Common.Api.Base;
 
 namespace ApiSample01.Api.Controllers.weather.api.v1;
 

@@ -1,4 +1,4 @@
-namespace ApiSample01.Domain.Entities.Common.Api.Base;
+namespace ApiSample01.Application.Common.Base;
 
 public class Page
 {

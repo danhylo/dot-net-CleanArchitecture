@@ -2,6 +2,8 @@ namespace ApiSample01.Application.Services;
 
 using ApiSample01.Domain.Entities.WeatherForecast;
 using ApiSample01.Domain.Entities.Common.Api.Base;
+using ApiSample01.Domain.Exceptions;
+using ApiSample01.Domain.Constants;
 using ApiSample01.Application.Common.Extensions;
 using ApiSample01.Application.Common.Helpers;
 using ApiSample01.Domain.DTOs;
@@ -10,7 +12,7 @@ using ApiSample01.Application.Interfaces;
 
 public class WeatherForecastApplicationService : IWeatherForecastApplicationService
 {
-    private const string APPLICATION_NAME = "Weather API";
+
 
     public IEnumerable<WeatherForecast> GetWeatherForecast(int days, int start, int limit)
     {
@@ -40,13 +42,13 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
             
             return Result.Ok(response);
         }
-        catch (ArgumentException ex)
+        catch (ET002FieldSizeError ex)
         {
-            return Result.Fail<WeatherForecastApiResponseDto>(ErrorResponseHelper.CreateErrorResponse(400, "Bad Request", "EN:001", ex.Message, APPLICATION_NAME, ex));
+            return Result.Fail<WeatherForecastApiResponseDto>(ErrorResponseHelper.CreateApiErrorResponse(ex));
         }
         catch (Exception ex)
         {
-            return Result.Fail<WeatherForecastApiResponseDto>(ErrorResponseHelper.CreateErrorResponse(500, "Internal Server Error", "EN:500", "Internal error", APPLICATION_NAME, ex));
+            return Result.Fail<WeatherForecastApiResponseDto>(ErrorResponseHelper.CreateApiErrorResponse(ex));
         }
     }
 
@@ -55,9 +57,15 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
 
     private static void ValidateParameters(int days, int start, int limit)
     {
-        if (days < 0) throw new ArgumentException("Days cannot be negative", nameof(days));
-        if (start < 1) throw new ArgumentException("Start must be greater than 0", nameof(start));
-        if (limit < 1) throw new ArgumentException("Limit must be greater than 0", nameof(limit));
+        if (days < 0 || days > 100)
+            throw new ET002FieldSizeError("days", days, "int", 100, ApplicationConstants.WEATHER_API_NAME);
+
+        if (start < 1)
+            throw new ET002FieldSizeError("start", start, "int", 1, ApplicationConstants.WEATHER_API_NAME);
+
+        if (limit < 0 || limit > 100)
+            throw new ET002FieldSizeError("limit", limit, "int", 100, ApplicationConstants.WEATHER_API_NAME);
+
     }
 
 

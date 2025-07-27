@@ -1,4 +1,4 @@
-namespace ApiSample01.Domain.Entities.Common.api.@base;
+namespace ApiSample01.Domain.Entities.Common.Api.Base;
 
 using System.Text.Json.Serialization;
 
@@ -14,7 +14,7 @@ public class ApiResponse<T>
     public bool Status { get; set; }
     
     [JsonPropertyOrder(4)]
-    public IEnumerable<T> Data { get; set; } = Enumerable.Empty<T>();
+    public T? Data { get; set; }
     
     [JsonPropertyOrder(6)]
     public Transaction Transaction { get; set; } = new();

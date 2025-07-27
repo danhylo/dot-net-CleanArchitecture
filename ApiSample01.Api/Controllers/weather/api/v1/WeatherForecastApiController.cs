@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ApiSample01.Domain.DTOs;
 using ApiSample01.Application.Interfaces;
-using ApiSample01.Application.Common;
-using ApiSample01.Domain.Entities.Common.api.@base;
+using ApiSample01.Domain.Entities.Common.Api.Base;
 
 namespace ApiSample01.Api.Controllers.weather.api.v1;
 
@@ -26,7 +25,7 @@ public class WeatherForecastApiController : ControllerBase
     [ProducesResponseType(typeof(ApiErrorResponse), 500)]
     public IActionResult Get([FromQuery] int days = 2, [FromQuery] int start = 1, [FromQuery] int limit = 100)
     {
-        var result = _weatherForecastApplicationService.GetWeatherForecastApiResponse(days, start, limit);
+        var result = _weatherForecastApplicationService.GetWeatherForecastApi(days, start, limit);
 
         if (result.IsSuccess)
         {

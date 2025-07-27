@@ -1,6 +1,4 @@
-namespace ApiSample01.Application.Common;
-
-using ApiSample01.Domain.Entities.Common.api.@base;
+namespace ApiSample01.Domain.Entities.Common.Api.Base;
 
 public class Result<TSuccess, TError>
 {

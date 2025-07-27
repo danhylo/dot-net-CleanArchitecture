@@ -15,6 +15,11 @@ public class ET002FieldSizeError : BaseException
         Value = value;
         Type = type;
         MaxSize = maxSize;
+
+        HttpCode = 400;
+        HttpMessage = "Bad Request";
+        ErrorCode = "ET:002";
         Application = application;
+        
     }
 }

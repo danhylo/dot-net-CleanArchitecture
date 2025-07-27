@@ -2,10 +2,10 @@ namespace ApiSample01.Domain.Exceptions;
 
 public abstract class BaseException : Exception
 {
-    public int HttpCode { get; } = 400;
-    public string HttpMessage { get; } = "Bad Request";
+    public int HttpCode { get; protected set; } = 0;
+    public string HttpMessage { get; protected set; } = string.Empty;
     public bool Status { get; } = false;
-    public string ErrorCode { get; } = "ET:002";
+    public string ErrorCode { get; protected set; } = string.Empty;
     public string ErrorMessage { get; protected set; } = string.Empty;
     public string Application { get; protected set; } = string.Empty;
 

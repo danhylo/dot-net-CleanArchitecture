@@ -40,6 +40,13 @@ packages/
 # Arquivos de ambiente
 .env
 
+# Relatórios de cobertura de testes
+CoverageReport/
+TestResults/
+
+# Arquivos do sistema macOS
+.DS_Store
+
 # Mantém apenas o código fonte e arquivos de configuração necessários
 !ApiSample01.Api/
 !ApiSample01.Domain/

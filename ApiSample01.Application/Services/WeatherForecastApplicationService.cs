@@ -9,6 +9,8 @@ using ApiSample01.Application.Common.Helpers;
 using ApiSample01.Domain.DTOs;
 using ApiSample01.Domain.Services;
 using ApiSample01.Application.Interfaces;
+using ApiSample01.Application.DTOs;
+using ApiSample01.Application.Validators;
 
 public class WeatherForecastApplicationService : IWeatherForecastApplicationService
 {
@@ -57,15 +59,10 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
 
     private static void ValidateParameters(int days, int start, int limit)
     {
-        if (days < 0 || days > 100)
-            throw new ET002FieldSizeError("days", days, "int", 100, ApplicationConstants.WEATHER_API_NAME);
-
-        if (start < 1)
-            throw new ET002FieldSizeError("start", start, "int", 1, ApplicationConstants.WEATHER_API_NAME);
-
-        if (limit < 0 || limit > 100)
-            throw new ET002FieldSizeError("limit", limit, "int", 100, ApplicationConstants.WEATHER_API_NAME);
-
+        var request = new WeatherRequest { Days = days, Start = start, Limit = limit };
+        var validator = new WeatherRequestValidator();
+        
+        validator.ValidateAndThrowCustom(request);
     }
 
 

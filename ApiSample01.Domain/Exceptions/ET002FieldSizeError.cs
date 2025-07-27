@@ -9,7 +9,7 @@ public class ET002FieldSizeError : BaseException
 
 
     public ET002FieldSizeError(string fieldName, int value, string type, int maxSize, string application)
-        : base($"Tamanho do campo superior ou inferior ao esperado: Campo [{fieldName}], Valor [{value}], Tipo: [{type}], Tamanho: [{maxSize}]")
+        : base($"Field size exceeds expected upper or infer limit: Field [{fieldName}], Value [{value}], Type: [{type}], MaxSize: [{maxSize}]")
     {
         FieldName = fieldName;
         Value = value;

@@ -52,16 +52,14 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
         }
         catch (ArgumentException ex)
         {
-            return Result.Fail<WeatherForecastApiResponseDto>(CreateErrorResponse(400, "Bad Request", "EN:001", ex.Message, ex));
+            return Result.Fail<WeatherForecastApiResponseDto>(CreateErrorResponse(400, "Bad Request", "EN:001", ex.Message, "Weather API", ex));
         }
         catch (Exception ex)
         {
-            return Result.Fail<WeatherForecastApiResponseDto>(CreateErrorResponse(500, "Internal Server Error", "EN:500", "Internal error", ex));
+            return Result.Fail<WeatherForecastApiResponseDto>(CreateErrorResponse(500, "Internal Server Error", "EN:500", "Internal error", "Weather API", ex));
         }
     }
-    //--------------------------------------------------------------------------
-    // Private methods
-    //--------------------------------------------------------------------------
+ 
     private static IEnumerable<WeatherForecast> GetForecastsFromDomain(int days)
     {
         return WeatherForecastDomainService.GenerateForecasts(days);
@@ -77,7 +75,7 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
             throw new ArgumentException("Limit must be greater than 0", nameof(limit));
     }
 
-    private static ApiErrorResponse CreateErrorResponse(int httpCode, string httpMessage, string errorCode, string errorMessage, Exception ex)
+    private static ApiErrorResponse CreateErrorResponse(int httpCode, string httpMessage, string errorCode, string errorMessage, string application, Exception ex)
     {
         return new ApiErrorResponse
         {
@@ -88,7 +86,7 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
             {
                 Code = errorCode,
                 Message = errorMessage,
-                Application = "Weather API"
+                Application = application
             },
             Transaction = new Transaction
             {

@@ -7,8 +7,17 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new() { Title = "ApiSample01", Version = "v1" });
 });
 
-// Adiciona suporte a controllers
-builder.Services.AddControllers();
+// Adiciona suporte a controllers com validação customizada
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ApiSample01.Api.Filters.ModelValidationFilter>();
+});
+
+// Configura comportamento da API para usar validação customizada
+builder.Services.Configure<Microsoft.AspNetCore.Mvc.ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 // Registra o repositório
 builder.Services.AddScoped<ApiSample01.Domain.Repositories.IWeatherRepository, ApiSample01.Infrastructure.Repositories.WeatherRepository>();

@@ -6,28 +6,35 @@ using ApiSample01.Domain.Exceptions;
 using ApiSample01.Domain.Constants;
 using ApiSample01.Application.Common.Extensions;
 using ApiSample01.Application.Common.Helpers;
-using ApiSample01.Domain.DTOs;
+using ApiSample01.Domain.Entities.Dto;
 using ApiSample01.Domain.Services;
 using ApiSample01.Application.Interfaces;
-using ApiSample01.Application.DTOs;
-using ApiSample01.Application.Validators;
+using ApiSample01.Domain.Repositories;
 
 public class WeatherForecastApplicationService : IWeatherForecastApplicationService
 {
+    private readonly IWeatherRepository _weatherRepository;
 
-
-    public IEnumerable<WeatherForecast> GetWeatherForecast(int days, int start, int limit)
+    public WeatherForecastApplicationService(IWeatherRepository weatherRepository)
     {
-        ValidateParameters(days, start, limit);
-        return GetForecastsFromDomain(days).Paginate(start, limit);
+        _weatherRepository = weatherRepository;
     }
 
-    public Result<WeatherForecastApiResponseDto, ApiErrorResponse> GetWeatherForecastApi(int days, int start, int limit)
+
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(int days, int start, int limit)
+    {
+        var request = new WeatherForecastApiRequestDto(days, start, limit);
+        var forecasts = await GetForecastsFromDomain(request.Days);
+        return forecasts.Paginate(request.Start, request.Limit);
+    }
+
+    public async Task<Result<WeatherForecastApiResponseDto, ApiErrorResponse>> GetWeatherForecastApi(int days, int start, int limit)
     {
         try
         {
-            ValidateParameters(days, start, limit);
-            var (forecasts, total) = GetForecastsFromDomain(days).PaginateWithTotal(start, limit);
+            var request = new WeatherForecastApiRequestDto(days, start, limit);
+            var forecastsData = await GetForecastsFromDomain(request.Days);
+            var (forecasts, total) = forecastsData.PaginateWithTotal(request.Start, request.Limit);
             
             var page = new Page { Start = start, Limit = forecasts.Count(), Total = total };
             var transaction = TransactionHelper.CreateTransaction();
@@ -54,16 +61,10 @@ public class WeatherForecastApplicationService : IWeatherForecastApplicationServ
         }
     }
 
-    private static IEnumerable<WeatherForecast> GetForecastsFromDomain(int days) => 
-        WeatherForecastDomainService.GenerateForecasts(days);
+    private async Task<IEnumerable<WeatherForecast>> GetForecastsFromDomain(int days) => 
+        await _weatherRepository.GetForecastsAsync(days);
 
-    private static void ValidateParameters(int days, int start, int limit)
-    {
-        var request = new WeatherRequest { Days = days, Start = start, Limit = limit };
-        var validator = new WeatherRequestValidator();
-        
-        validator.ValidateAndThrowCustom(request);
-    }
+
 
 
 }

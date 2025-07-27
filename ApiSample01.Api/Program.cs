@@ -10,6 +10,9 @@ builder.Services.AddSwaggerGen(c =>
 // Adiciona suporte a controllers
 builder.Services.AddControllers();
 
+// Registra o repositório
+builder.Services.AddScoped<ApiSample01.Domain.Repositories.IWeatherRepository, ApiSample01.Infrastructure.Repositories.WeatherRepository>();
+
 // Registra o serviço de aplicação
 builder.Services.AddScoped<ApiSample01.Application.Interfaces.IWeatherForecastApplicationService, ApiSample01.Application.Services.WeatherForecastApplicationService>();
 

@@ -32,10 +32,20 @@ open CoverageReport/index.html
 ```
 CoverageReport/
 ├── index.html                              # 📊 Relatório principal
-├── ApiSample01.Domain_ET002FieldSizeError.html  # 🔍 Detalhes por classe
-├── ApiSample01.Domain_WeatherForecast.html
+├── ApiSample01.Api_WeatherForecastApiController.html
+├── ApiSample01.Api_WeatherForecastRequest.html
+├── ApiSample01.Api_ModelValidationFilter.html
+├── ApiSample01.Application_WeatherForecastApplicationService.html
+├── ApiSample01.Application_WeatherForecastApiRequestDto.html
+├── ApiSample01.Application_ValidationExtensions.html
+├── ApiSample01.Domain_ET002FieldSizeError.html
+├── ApiSample01.Domain_BaseException.html
 ├── ApiSample01.Domain_WeatherForecastBusinessRules.html
 ├── ApiSample01.Domain_WeatherForecastDomainService.html
+├── ApiSample01.Domain_DaysRange.html
+├── ApiSample01.Domain_LimitValue.html
+├── ApiSample01.Domain_StartValue.html
+├── ApiSample01.Infrastructure_WeatherRepository.html
 └── [assets CSS/JS/SVG]                     # 🎨 Recursos visuais
 ```
 
@@ -76,11 +86,29 @@ CoverageReport/
 ## 📊 Status Atual da Cobertura
 
 ### **Domain Layer**
-- ✅ **ET002FieldSizeError**: 100% (7/7 testes)
-- ⏳ **WeatherForecastBusinessRules**: Pendente
-- ⏳ **WeatherForecastDomainService**: Pendente
-- ⏳ **WeatherForecast**: Pendente
-- ⏳ **ValueObjects**: Pendente
+- ✅ **ET002FieldSizeError**: 100% (2/2 testes)
+- ✅ **BaseException**: 100% (2/2 testes)
+- ✅ **WeatherForecastBusinessRules**: 100% (4/4 testes)
+- ✅ **WeatherForecastDomainService**: 100% (2/2 testes)
+- ✅ **ValueObjects**: 100% (12/12 testes)
+  - DaysRange: 4/4 testes
+  - LimitValue: 4/4 testes
+  - StartValue: 4/4 testes
+  - ValueObject: 0/0 testes (classe abstrata)
+
+### **Application Layer**
+- ✅ **WeatherForecastApplicationService**: 100% (8/8 testes)
+- ✅ **WeatherForecastApiRequestDto**: 100% (12/12 testes)
+- ✅ **ValidationExtensions**: 100% (3/3 testes)
+
+### **Infrastructure Layer**
+- ✅ **WeatherRepository**: 100% (1/1 teste)
+
+### **Presentation Layer (API)**
+- ✅ **WeatherForecastApiController**: 100% (11/11 testes)
+- ✅ **WeatherForecastRequest**: 100% (22/22 testes)
+- ✅ **ModelValidationFilter**: 100% (4/4 testes)
+- 🚫 **Program.cs**: Excluído da cobertura (configuração)
 
 ## 🔧 Configurações Avançadas
 
@@ -91,6 +119,9 @@ CoverageReport/
 
 # Incluir apenas Domain
 -reporttypes:Html -assemblyfilters:+ApiSample01.Domain
+
+# Excluir Program.cs (já configurado)
+-filefilters:"-**/Program.cs"
 ```
 
 ### **Configuração via arquivo**

@@ -593,12 +593,12 @@ Após executar a API, acesse: `https://localhost:7299/swagger`
 
 ```
 ApiSample01/
-├── 🌐 ApiSample01.Api/              # Presentation Layer
+├── 🌐 ApiSample01.Api/               # Presentation Layer
 ├── 📋 ApiSample01.Application/       # Application Layer  
-├── 🎯 ApiSample01.Domain/           # Domain Layer (Core)
-├── 💾 ApiSample01.Infrastructure/   # Infrastructure Layer
-├── 🧪 *.Tests/                     # Test Projects
-└── 📊 CoverageReport/              # Coverage Reports
+├── 🎯 ApiSample01.Domain/            # Domain Layer (Core)
+├── 💾 ApiSample01.Infrastructure/    # Infrastructure Layer
+├── 🧪 *.Tests/                       # Test Projects
+└── 📊 CoverageReport/                # Coverage Reports
 ```
 
 ## 💡 Conceitos Implementados

@@ -16,7 +16,7 @@ Este projeto implementa uma **API de Previsão do Tempo** seguindo os princípio
 GET /weather/api/v1/forecast?days=5&start=1&limit=10
 Host: https://localhost:7299;http://localhost:5299
 Accept: application/json
-Swagger/OpenApi: https://localhost:7299/swagger/index.html
+Swagger/OpenApi: https://localhost:7299/swagger
 ```
 
 **Parâmetros de Query:**
@@ -587,7 +587,7 @@ dotnet test
 ```
 
 ### Swagger UI
-Após executar a API, acesse: `https://localhost:7000/swagger`
+Após executar a API, acesse: `https://localhost:7299/swagger`
 
 ## 📁 Estrutura do Projeto
 

@@ -14,8 +14,9 @@ Este projeto implementa uma **API de Previsão do Tempo** seguindo os princípio
 
 ```http
 GET /weather/api/v1/forecast?days=5&start=1&limit=10
-Host: localhost:5000
+Host: https://localhost:7299;http://localhost:5299
 Accept: application/json
+Swagger/OpenApi: https://localhost:7299/swagger
 ```
 
 **Parâmetros de Query:**

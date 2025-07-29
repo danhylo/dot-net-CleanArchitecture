@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  weatherforecast-api:
+    image: weatherforecast-api
+    ports:
+      - "8090:8080"
+    environment:
+      #- ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+      - DOTNET_RUNNING_IN_CONTAINER=true
+    restart: unless-stopped

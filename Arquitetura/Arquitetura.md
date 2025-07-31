@@ -133,6 +133,12 @@ graph TB
     TERRAFORM --> KV
 ```
 
+## 🎨 Diagrama Visual com Ícones Azure
+
+![Azure Enterprise Architecture](Azure-Architecture-Diagram.jpg)
+
+> 💡 **Diagrama interativo disponível em**: [Azure-Architecture-Diagram.drawio](Azure-Architecture-Diagram.drawio) - Abra no [draw.io](https://app.diagrams.net) para edição
+
 ## 🎯 Componentes Estratégicos
 
 ### **🌐 Edge & Global Distribution**

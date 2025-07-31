@@ -81,30 +81,56 @@ graph TB
         KEYVAULT_DEVOPS[DevOps Key Vault]
     end
     
-    %% Connections
-    AFD --> APIM
+    %% Main Flow Connections
+    AFD --> WAF
+    WAF --> APIM
+    APIM --> RATE
+    APIM --> AUTH
+    APIM --> TRANS
     APIM --> ALB
-    ALB --> ACA
-    ALB --> AKS
+    ALB --> TM
+    TM --> ACA
+    TM --> AKS
+    TM --> AF
+    
+    %% Compute to Data Connections
     ACA --> SQLDB
     ACA --> COSMOS
     ACA --> REDIS
+    AKS --> SQLDB
+    AKS --> COSMOS
+    AKS --> REDIS
     AF --> SB
     AF --> EH
+    AF --> EG
     
     %% Security Connections
+    EID --> AUTH
     EID --> APIM
     KV --> ACA
     KV --> AKS
+    KV --> AF
     NSG --> ACA
+    NSG --> AKS
     PEP --> SQLDB
     PEP --> COSMOS
+    PEP --> REDIS
     
     %% Monitoring Connections
     AI --> ACA
     AI --> AKS
+    AI --> AF
     MON --> SQLDB
     MON --> COSMOS
+    MON --> REDIS
+    TRACE --> ACA
+    TRACE --> AKS
+    
+    %% DevOps Connections
+    DEVOPS --> ACR
+    ACR --> ACA
+    ACR --> AKS
+    TERRAFORM --> KV
 ```
 
 ## 🎯 Componentes Estratégicos
@@ -115,11 +141,13 @@ graph TB
 - **WAF**: Proteção contra OWASP Top 10 e ameaças emergentes
 - **DDoS Protection**: Mitigação automática de ataques volumétricos
 
-### **🔌 API Gateway Layer**
-- **API Management**: Ponto único de entrada com versionamento e documentação
-- **Rate Limiting**: Proteção contra abuse e garantia de SLA
-- **Authentication/Authorization**: Integração com Entra ID e tokens JWT
-- **Request/Response Transformation**: Adaptação de contratos sem mudança de código
+### **🔌 API Gateway Layer** ⭐
+- **API Management**: Ponto único de entrada com versionamento, documentação e developer portal
+- **Rate Limiting**: Proteção contra abuse com quotas por cliente e garantia de SLA
+- **Authentication/Authorization**: Integração nativa com Entra ID, OAuth 2.0 e JWT validation
+- **Request/Response Transformation**: Adaptação de contratos, data masking e protocol translation
+
+> 🎯 **Fluxo**: Edge Layer → **API Management** → Load Balancer → Compute Layer
 
 ### **🔐 Security & Identity**
 - **Microsoft Entra ID**: Identity provider central com SSO

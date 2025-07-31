@@ -1,3 +1,4 @@
+```mermaid
 graph TB
     subgraph "🌐 Edge Layer"
         CDN[Azure CDN]
@@ -34,3 +35,4 @@ graph TB
         LA[Log Analytics]
         MON[Azure Monitor]
     end
+```
